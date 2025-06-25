@@ -12,8 +12,8 @@ export default function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <h1 className="text-2xl font-bold text-green-700">
-                🐲 Dragon Garden Saipan
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-green-700">
+              🌴 Dragon Garden Saipan 
               </h1>
             </Link>
           </div>
@@ -27,34 +27,23 @@ export default function Navigation() {
               Home
             </Link>
             <Link
-              href="/about"
+              href="/services"
               className="text-gray-700 hover:text-green-700 px-3 py-2 text-sm font-medium transition-colors"
             >
-              About
+              Services
             </Link>
             <Link
-              href="/fruits"
+              href="/selection"
               className="text-gray-700 hover:text-green-700 px-3 py-2 text-sm font-medium transition-colors"
             >
-              Our Fruits
+              Our Selection
             </Link>
-            <Link
-              href="/blog"
-              className="text-gray-700 hover:text-green-700 px-3 py-2 text-sm font-medium transition-colors"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/visit"
-              className="text-gray-700 hover:text-green-700 px-3 py-2 text-sm font-medium transition-colors"
-            >
-              Visit Us
-            </Link>
+           
             <Link
               href="/contact"
               className="bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-800 transition-colors"
             >
-              Contact
+              Contact & Visit
             </Link>
           </div>
 
@@ -87,39 +76,25 @@ export default function Navigation() {
                 Home
               </Link>
               <Link
-                href="/about"
+                href="/selection"
                 className="text-gray-700 hover:text-green-700 block px-3 py-2 text-base font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                About
+                Our Selection
               </Link>
               <Link
-                href="/fruits"
+                href="/services"
                 className="text-gray-700 hover:text-green-700 block px-3 py-2 text-base font-medium"
                 onClick={() => setIsOpen(false)}
               >
-                Our Fruits
-              </Link>
-              <Link
-                href="/blog"
-                className="text-gray-700 hover:text-green-700 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Blog
-              </Link>
-              <Link
-                href="/visit"
-                className="text-gray-700 hover:text-green-700 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Visit Us
+                Services
               </Link>
               <Link
                 href="/contact"
                 className="bg-green-700 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-green-800"
                 onClick={() => setIsOpen(false)}
               >
-                Contact
+                Contact & Visit
               </Link>
             </div>
           </div>

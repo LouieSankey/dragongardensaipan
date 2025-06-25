@@ -5,7 +5,9 @@ import Footer from '@/components/Footer'
 import { getAllPosts } from '@/lib/blog'
 
 export default function Home() {
-  const recentPosts = getAllPosts().slice(0, 3)
+  const allPosts = getAllPosts()
+  const recentPosts = allPosts.slice(0, 4)
+  const remainingCount = allPosts.length - 4
 
   return (
     <>
@@ -19,19 +21,18 @@ export default function Home() {
                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
                   Welcome to{' '}
                   <span className="text-green-700">Dragon Garden</span>{' '}
-                  Saipan
+                  Saipan 🐉
                 </h1>
                 <p className="mt-6 text-xl text-gray-600 leading-relaxed">
                   Discover the world&apos;s rarest and most exotic fruits in our botanical paradise. 
-                  From legendary dragon fruits to mysterious tropical treasures, experience 
-                  flavors you&apos;ve never imagined in the heart of Saipan.
+                 
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Link
-                    href="/fruits"
+                    href="/selection"
                     className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-700 hover:bg-green-800 transition-colors"
                   >
-                    Explore Our Fruits
+                    Explore Our Selection
                   </Link>
                   <Link
                     href="/services"
@@ -42,13 +43,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative">
-                <div className="w-[500px] h-80 rounded-lg overflow-hidden shadow-xl mx-auto">
+                <div className="w-full rounded-lg overflow-hidden shadow-xl max-w-lg mx-auto">
                   <Image
-                    src="/images/pineapple.png"
+                    src="/images/purple-sweet-sop.jpg"
                     alt="Exotic tropical fruits in Dragon Garden Saipan"
                     width={500}
                     height={320}
-                    className="object-cover w-full h-full"
+                    className="w-full h-auto"
                     priority
                   />
                 </div>
@@ -57,30 +58,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Services Overview */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Why Dragon Garden Saipan?
+                What We Offer
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We specialize in cultivating the world&apos;s most extraordinary fruits, 
-                bringing you unique tastes and experiences you won&apos;t find anywhere else.
+                From fresh exotic fruits to rare seeds and guided tastings, we provide everything 
+                you need to discover the world&apos;s most extraordinary tropical fruits.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="mx-auto h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                  <span className="text-3xl">🐲</span>
+                  <span className="text-3xl">🍎</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Rarest Varieties
+                  Fruit Sales
                 </h3>
                 <p className="text-gray-600">
-                  Home to fruits so rare they&apos;re considered mythical. Experience dragon fruits, 
-                  miracle berries, and other legendary tropical treasures.
+                  Premium exotic fruits harvested fresh from our garden. Island exclusives 
+                  like Purple Sweet Sop and rare seasonal specialties.
                 </p>
               </div>
               
@@ -89,24 +90,24 @@ export default function Home() {
                   <span className="text-3xl">🌱</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Sustainable Cultivation
+                  Rare Seeds
                 </h3>
                 <p className="text-gray-600">
-                  We use eco-friendly farming practices and traditional cultivation methods 
-                  to ensure the highest quality and environmental responsibility.
+                  Start your own exotic fruit garden with viable seeds from our rarest varieties. 
+                  Complete with growing instructions and cultivation support.
                 </p>
               </div>
               
               <div className="text-center">
                 <div className="mx-auto h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                  <span className="text-3xl">🏝️</span>
+                  <span className="text-3xl">👅</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Paradise Location
+                  Fruit Tastings
                 </h3>
                 <p className="text-gray-600">
-                  Located in the tropical paradise of Saipan, our garden benefits from 
-                  perfect climate conditions for growing exotic fruits.
+                  Guided tasting experiences for individuals or groups. Discover flavors 
+                  you never knew existed in our tropical paradise.
                 </p>
               </div>
             </div>
@@ -126,40 +127,58 @@ export default function Home() {
             </div>
 
             {recentPosts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {recentPosts.map((post) => (
-                  <article key={post.slug} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    {post.image && (
-                      <div className="aspect-w-16 aspect-h-9">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          width={400}
-                          height={225}
-                          className="object-cover"
-                        />
+                  <article key={post.slug} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div className="md:flex">
+                      <div className="md:w-1/2">
+                        {post.image && (
+                          <div className="h-64 md:h-full relative">
+                            <Image
+                              src={post.image}
+                              alt={post.title}
+                              fill
+                              className="object-cover object-center"
+                            />
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <div className="p-6">
-                      <div className="flex items-center text-sm text-gray-500 mb-2">
-                        <span>{new Date(post.date).toLocaleDateString()}</span>
-                        <span className="mx-2">•</span>
-                        <span>{post.readingTime}</span>
+                      <div className="md:w-1/2 p-6">
+                        <div className="flex items-center text-sm text-gray-500 mb-2">
+                          <span>{new Date(post.date).toLocaleDateString()}</span>
+                          <span className="mx-2">•</span>
+                          <span>{post.readingTime}</span>
+                        </div>
+                        
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                          <Link href={`/blog/${post.slug}`} className="hover:text-green-700 transition-colors">
+                            {post.title}
+                          </Link>
+                        </h3>
+                        
+                        <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between">
+                          <Link
+                            href={`/blog/${post.slug}`}
+                            className="inline-flex items-center text-green-700 font-medium hover:text-green-800 transition-colors text-sm"
+                          >
+                            Learn More
+                            <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                          
+                          <Link
+                            href="/contact"
+                            className="inline-flex items-center px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full hover:bg-green-200 transition-colors"
+                          >
+                            Inquire
+                          </Link>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                        <Link href={`/blog/${post.slug}`} className="hover:text-green-700 transition-colors">
-                          {post.title}
-                        </Link>
-                      </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {post.excerpt}
-                      </p>
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="text-green-700 font-medium hover:text-green-800 transition-colors"
-                      >
-                        Read More →
-                      </Link>
                     </div>
                   </article>
                 ))}
@@ -170,45 +189,97 @@ export default function Home() {
                   Welcome to our blog! We&apos;ll be sharing exciting content about our rare fruits soon.
                 </p>
                 <Link
-                  href="/blog"
+                  href="/selection"
                   className="inline-block mt-4 text-green-700 font-medium hover:text-green-800 transition-colors"
                 >
-                  Visit Our Blog →
+                  Explore Our Selection →
                 </Link>
               </div>
             )}
 
-            {recentPosts.length > 0 && (
+            {recentPosts.length > 0 && remainingCount > 0 && (
               <div className="text-center mt-12">
                 <Link
-                  href="/blog"
+                  href="/selection"
                   className="inline-flex items-center px-6 py-3 border border-green-700 text-base font-medium rounded-md text-green-700 bg-white hover:bg-green-50 transition-colors"
                 >
-                  View All Posts
+                  View {remainingCount} More Varieties
                 </Link>
               </div>
             )}
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 bg-green-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Experience the Extraordinary?
-            </h2>
-            <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-              Visit Dragon Garden Saipan and taste fruits you never knew existed. 
-              Book your appointment today for an unforgettable tropical adventure.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-green-700 bg-white hover:bg-green-50 transition-colors"
-            >
-              Book Your Visit
-            </Link>
+                {/* News Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                News & Updates
+              </h2>
+              <p className="text-xl text-gray-600">
+                Stay informed about exciting developments at Dragon Garden Saipan
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <article className="bg-gray-50 rounded-lg overflow-hidden shadow-sm">
+                <div className="md:flex">
+                  <div className="md:flex-shrink-0 md:w-1/3">
+                    <img 
+                      src="/images/house-image-1.jpeg" 
+                      alt="Potential Dragon Garden Hostel entrance" 
+                      className="h-48 w-full object-cover md:h-full"
+                    />
+                  </div>
+                  <div className="p-8 md:flex-1">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center">
+                          <span className="text-2xl">🏨</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <span className="inline-block px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
+                            New Project
+                          </span>
+                          <span className="text-sm text-gray-500">December 2024</span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                          Dragon Garden Hostel - Dream or Reality?
+                        </h3>
+                                                  <p className="text-gray-600 mb-4">
+                            We&apos;re exploring the possibility of creating Saipan&apos;s first digital nomad hostel 
+                            right here at Dragon Garden. Imagine working remotely while enjoying fresh garden-to-glass smoothies and the island lifestyle.
+                          </p>
+                        <a
+                          href="https://louiesankey.github.io/dragon-garden-hostel/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-green-700 font-medium hover:text-green-800 transition-colors"
+                        >
+                          Learn more about Dragon Garden Hostel
+                          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <div className="text-center mt-8">
+                <p className="text-gray-500 text-sm">
+                  More updates coming soon...
+                </p>
+              </div>
+            </div>
           </div>
         </section>
+
+      
       </main>
       <Footer />
     </>

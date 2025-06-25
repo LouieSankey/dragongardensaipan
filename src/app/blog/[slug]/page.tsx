@@ -31,8 +31,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
+  // If the seoTitle already contains the site name, use it as is
+  // Otherwise, let the template in layout.tsx add it
+  const title = post.seo.title.includes('Dragon Garden Saipan') 
+    ? post.seo.title 
+    : post.seo.title
+
   return {
-    title: post.seo.title,
+    title,
     description: post.seo.description,
     keywords: post.seo.keywords,
     authors: [{ name: post.author }],
@@ -118,7 +124,7 @@ export default async function BlogPost({ params }: PageProps) {
                   <ol className="flex items-center justify-center space-x-2 text-sm text-gray-500">
                     <li><Link href="/" className="hover:text-green-700">Home</Link></li>
                     <li><span>/</span></li>
-                    <li><Link href="/blog" className="hover:text-green-700">Blog</Link></li>
+                    <li><Link href="/selection" className="hover:text-green-700">Our Selection</Link></li>
                     <li><span>/</span></li>
                     <li className="text-gray-900">{post.title}</li>
                   </ol>
@@ -175,13 +181,13 @@ export default async function BlogPost({ params }: PageProps) {
           {/* Featured Image */}
           {post.image && (
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
-              <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-xl">
+              <div className="h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
                 <Image
                   src={post.image}
                   alt={post.title}
                   width={1200}
                   height={675}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   priority
                 />
               </div>
@@ -191,8 +197,8 @@ export default async function BlogPost({ params }: PageProps) {
           {/* Content */}
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div 
-              className="prose prose-lg max-w-none prose-green prose-headings:text-gray-900 prose-a:text-green-700 prose-strong:text-gray-900"
-              dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br>') }}
+              className="max-w-none text-gray-900"
+              dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </div>
         </article>
@@ -244,17 +250,17 @@ export default async function BlogPost({ params }: PageProps) {
           </section>
         )}
 
-        {/* Back to Blog */}
+        {/* Back to Selection */}
         <section className="py-8 bg-white border-t">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Link
-              href="/blog"
+              href="/selection"
               className="inline-flex items-center text-green-700 font-medium hover:text-green-800 transition-colors"
             >
               <svg className="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              Back to All Posts
+              Back to Our Selection
             </Link>
           </div>
         </section>

@@ -2,6 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
+import { remark } from 'remark'
+import html from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog')
 
@@ -20,6 +22,59 @@ export interface BlogPost {
     description: string
     keywords: string[]
   }
+}
+
+// Helper function to process markdown
+async function processMarkdown(content: string): Promise<string> {
+  const processedContent = await remark()
+    .use(html, { sanitize: false })
+    .process(content)
+  return processedContent.toString()
+}
+
+// Synchronous version using a simple but better markdown processor
+function processMarkdownSync(content: string): string {
+  let processed = content
+    // Headers first
+    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-gray-900 mt-10 mb-6">$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-gray-900 mt-12 mb-8">$1</h1>')
+    
+    // Bold and italic (handle both * and _ syntax)
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+    .replace(/_(.*?)_/g, '<em class="italic text-gray-600">$1</em>')
+    
+    // Links - handle markdown links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-green-700 hover:text-green-800 font-medium transition-colors underline">$1</a>')
+    
+    // Lists - handle bullet points
+    .replace(/^- (.*$)/gim, '<li class="text-gray-800 mb-2">$1</li>')
+
+  // Handle lists - wrap consecutive list items in ul tags
+  processed = processed.replace(/((?:<li[^>]*>.*?<\/li>\s*)+)/g, '<ul class="list-disc list-inside mb-6 space-y-2">$1</ul>')
+  
+  // Split into paragraphs and process each one
+  const paragraphs = processed.split('\n\n')
+  
+  const processedParagraphs = paragraphs.map(paragraph => {
+    const trimmed = paragraph.trim()
+    
+    // Skip empty paragraphs
+    if (!trimmed) {
+      return ''
+    }
+    
+    // Skip if it's already HTML (starts with <)
+    if (trimmed.startsWith('<')) {
+      return trimmed
+    }
+    
+    // For any remaining text, wrap it in a paragraph with dark styling
+    return `<p class="text-gray-900 mb-6 leading-relaxed">${trimmed}</p>`
+  })
+  
+  return processedParagraphs.join('\n')
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -43,7 +98,7 @@ export function getAllPosts(): BlogPost[] {
         title: data.title || 'Untitled',
         date: data.date || new Date().toISOString(),
         excerpt: data.excerpt || '',
-        content,
+        content: processMarkdownSync(content),
         readingTime: readingTime(content).text,
         tags: data.tags || [],
         image: data.image || null,
@@ -83,7 +138,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
       excerpt: data.excerpt || '',
-      content,
+      content: processMarkdownSync(content),
       readingTime: readingTime(content).text,
       tags: data.tags || [],
       image: data.image || null,

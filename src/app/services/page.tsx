@@ -5,12 +5,12 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Services - Dragon Garden Saipan | Garden Tours & Fruit Experiences',
-  description: 'Discover our premium services including guided garden tours, exotic fruit tastings, educational workshops, and private consultations at Dragon Garden Saipan.',
-  keywords: ['Dragon Garden Saipan services', 'garden tours', 'fruit tasting', 'exotic fruit experiences', 'Saipan tours', 'tropical fruit education'],
+  title: 'Services - Dragon Garden Saipan | Fresh Fruits, Seeds & Plant Starts',
+  description: 'Buy fresh exotic fruits, rare seeds, and plant starts from Dragon Garden Saipan. Book fruit tasting experiences and discover tropical treasures.',
+  keywords: ['Dragon Garden Saipan services', 'exotic fruit sales', 'rare seeds', 'plant starts', 'fruit tasting', 'Saipan tropical fruits'],
   openGraph: {
-    title: 'Services - Dragon Garden Saipan | Garden Tours & Fruit Experiences',
-    description: 'Discover our premium services including guided garden tours, exotic fruit tastings, educational workshops, and private consultations.',
+    title: 'Services - Dragon Garden Saipan | Fresh Fruits, Seeds & Plant Starts',
+    description: 'Buy fresh exotic fruits, rare seeds, and plant starts from Dragon Garden Saipan. Book fruit tasting experiences and discover tropical treasures.',
     type: 'website',
   },
 }
@@ -18,36 +18,32 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   const services = [
     {
-      title: 'Guided Garden Tours',
-      description: 'Experience our rare fruit collection with expert guides who share the stories behind each exotic variety.',
-      features: ['2-3 hour comprehensive tours', 'Expert botanical guidance', 'Small group experiences', 'Seasonal fruit highlights'],
-      price: 'From $45 per person',
-      image: '/images/passion-fruit.png',
+      title: 'Fruit Sales',
+      description: 'Purchase our premium exotic fruits fresh from the garden. From island-exclusive Purple Sweet Sop to rare passion fruits and seasonal specialties.',
+      features: ['Seasonal fresh fruits', 'Island-exclusive varieties', 'Premium quality guarantee', 'Direct from garden', 'Harvest-to-table freshness'],
+      price: 'Custom Quote',
+      image: '/images/purple-sweet-sop.jpg',
       popular: true,
+      icon: '🍎',
     },
     {
-      title: 'Exotic Fruit Tastings',
-      description: 'Taste the extraordinary with our curated selection of rare fruits, including dragon fruit, miracle berries, and seasonal specialties.',
-      features: ['10+ rare fruit varieties', 'Guided tasting experience', 'Learn about flavors & origins', 'Take-home fruit samples'],
-      price: 'From $35 per person',
-      image: '/images/suriname.png',
+      title: 'Rare Seeds',
+      description: 'Start your own exotic fruit garden with our carefully collected seeds from the rarest varieties. Perfect for serious cultivators and hobbyists.',
+      features: ['Viable, tested seeds', 'Growing instructions included', 'Rare variety genetics', 'Seasonal availability', 'Cultivation support'],
+      price: 'Custom Quote',
+      image: '/images/coming-soon-wide.jpg',
       popular: false,
+      icon: '🌱',
     },
+
     {
-      title: 'Educational Workshops',
-      description: 'Learn the art of exotic fruit cultivation, from planting techniques to harvesting and preservation methods.',
-      features: ['Hands-on learning', 'Take-home seedlings', 'Cultivation guides', 'Expert instruction'],
-      price: 'From $75 per person',
-      image: '/images/passion-fruit.png',
+      title: 'Fruit Tasting Experience',
+      description: 'Visit our garden for an unforgettable tasting journey through the world\'s most exotic fruits. Perfect for individuals, families, or groups.',
+      features: ['Guided garden tour', '8-12 fruit varieties', 'Educational experience', 'Seasonal specialties', 'Take-home samples'],
+      price: 'Custom Quote',
+      image: '/images/jackfruit.jpg',
       popular: false,
-    },
-    {
-      title: 'Private Consultations',
-      description: 'Get personalized advice for growing exotic fruits in your own garden or commercial operation.',
-      features: ['One-on-one expert guidance', 'Customized growing plans', 'Soil analysis recommendations', 'Follow-up support'],
-      price: 'From $150 per session',
-      image: '/images/suriname.png',
-      popular: false,
+      icon: '👅',
     },
   ]
 
@@ -63,23 +59,10 @@ export default function ServicesPage() {
                 Our Services
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                Immerse yourself in the world&apos;s rarest fruits through our expertly curated experiences, 
-                educational programs, and personalized consultation services.
+                From fresh exotic fruits to rare seeds and unforgettable tasting experiences, 
+                Dragon Garden Saipan offers everything you need to discover the world's most extraordinary tropical fruits.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-700 hover:bg-green-800 transition-colors"
-                >
-                  Book Now
-                </Link>
-                <Link
-                  href="#services-list"
-                  className="inline-flex items-center px-6 py-3 border border-green-700 text-base font-medium rounded-md text-green-700 bg-white hover:bg-green-50 transition-colors"
-                >
-                  View Services
-                </Link>
-              </div>
+            
             </div>
           </div>
         </section>
@@ -89,10 +72,10 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Choose Your Experience
+                What We Offer
               </h2>
               <p className="text-xl text-gray-600">
-                From intimate tastings to comprehensive educational workshops
+                Fresh fruits, rare genetics, and unforgettable experiences
               </p>
             </div>
 
@@ -102,7 +85,7 @@ export default function ServicesPage() {
                   {service.popular && (
                     <div className="absolute top-4 left-4 z-10">
                       <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        Most Popular
+                        Popular
                       </span>
                     </div>
                   )}
@@ -114,6 +97,9 @@ export default function ServicesPage() {
                       fill
                       className="object-cover"
                     />
+                    <div className="absolute top-4 right-4 bg-white/90 rounded-full p-2">
+                      <span className="text-2xl">{service.icon}</span>
+                    </div>
                   </div>
                   
                   <div className="p-6">
@@ -135,147 +121,25 @@ export default function ServicesPage() {
                       ))}
                     </ul>
                     
-                    <div className="flex items-center justify-between">
-                      <div className="text-2xl font-bold text-green-700">
-                        {service.price}
+                    <div className="border-t pt-4 mt-4">
+                      <div className="text-center">
+                        <p className="text-sm text-gray-600 mb-3">
+                          Custom quotes available
+                        </p>
+                        <Link
+                          href="/contact"
+                          className="inline-flex items-center justify-center w-full px-4 py-2 bg-green-700 text-white text-sm font-medium rounded-lg hover:bg-green-800 transition-colors shadow-sm"
+                        >
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                          Contact Us
+                        </Link>
                       </div>
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center px-4 py-2 border border-green-700 text-sm font-medium rounded-md text-green-700 bg-white hover:bg-green-50 transition-colors"
-                      >
-                        Book This Service
-                      </Link>
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Group Bookings */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Group & Private Bookings
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0">
-                      <div className="h-8 w-8 bg-green-100 rounded-full flex items-center justify-center">
-                        <span className="text-lg">👥</span>
-                      </div>
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="text-lg font-semibold text-gray-900">Corporate Events</h3>
-                      <p className="text-gray-600">
-                        Team building experiences and corporate retreats in our tropical paradise setting.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0">
-                      <div className="h-8 w-8 bg-green-100 rounded-full flex items-center justify-center">
-                        <span className="text-lg">🎓</span>
-                      </div>
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="text-lg font-semibold text-gray-900">Educational Groups</h3>
-                      <p className="text-gray-600">
-                        School field trips and university research programs with customized curricula.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0">
-                      <div className="h-8 w-8 bg-green-100 rounded-full flex items-center justify-center">
-                        <span className="text-lg">🌟</span>
-                      </div>
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="text-lg font-semibold text-gray-900">Special Occasions</h3>
-                      <p className="text-gray-600">
-                        Birthdays, anniversaries, and unique celebrations among rare tropical fruits.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="mt-8">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-700 hover:bg-green-800 transition-colors"
-                  >
-                    Request Group Quote
-                  </Link>
-                </div>
-              </div>
-              
-              <div className="mt-12 lg:mt-0">
-                <div className="bg-white rounded-lg shadow-lg p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    Planning Your Visit
-                  </h3>
-                  <div className="space-y-3 text-gray-600">
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span>Open daily: 9:00 AM - 5:00 PM</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      <span>Located in Saipan, Northern Mariana Islands</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>Advanced booking recommended</span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                      <span>Free consultation available</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-green-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Discover the Extraordinary?
-            </h2>
-            <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-              Book your Dragon Garden Saipan experience today and taste fruits you never knew existed. 
-              Every visit is a journey into the world&apos;s most exotic flavors.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-green-700 bg-white hover:bg-green-50 transition-colors"
-              >
-                Book Your Experience
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center px-8 py-4 border border-white text-lg font-medium rounded-md text-white hover:bg-green-800 transition-colors"
-              >
-                Learn More About Us
-              </Link>
             </div>
           </div>
         </section>

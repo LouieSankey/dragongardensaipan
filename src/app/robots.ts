@@ -4,13 +4,16 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: '/',
+      allow: [
+        '/',
+        '/_next/image*',
+        '/_next/static/*'
+      ],
       disallow: [
         '/private/',
         '/admin/',
         '/api/',
-        '/_next/',
-        '/static/',
+        '/_next/data/*'  // Protect API routes and dynamic data
       ],
     },
     sitemap: 'https://dragongardensaipan.com/sitemap.xml',
